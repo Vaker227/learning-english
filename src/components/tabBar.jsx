@@ -2,7 +2,6 @@ import React from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
-import { color } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
 
 export default function MyTabBar({ state, descriptors, navigation }) {
   const icons = [
@@ -85,7 +84,12 @@ export default function MyTabBar({ state, descriptors, navigation }) {
           <TouchableOpacity
             key={index}
             onPress={onPress}
-            style={{ flex: 1, alignItems: "center" }}
+            style={{
+              flex: 1,
+              alignItems: "center",
+              justifyContent: "center",
+              height: "100%",
+            }}
           >
             <View>
               {isFocused ? (

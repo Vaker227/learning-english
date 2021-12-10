@@ -17,10 +17,9 @@ export default function App() {
     <>
       <NavigationContainer>
         <Tab.Navigator
-          initialRouteName="Login"
+          initialRouteName="Home"
           screenOptions={{
             headerShown: false,
-            tabBarIconStyle: { display: "none" },
           }}
           tabBar={MyTabBar}
         >

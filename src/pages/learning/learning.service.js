@@ -69,16 +69,18 @@ export async function getListUnit(chapterId) {
 
 // return array word
 export async function getListWord(unitId) {
+  console.log("unit-id" + unitId);
   // db type Database
   const db = await connectDatabase();
   return new Promise((resolve, reject) => {
     db.transaction(
       (tx) => {
-        tx.executeSql(
+        return tx.executeSql(
           "select * from word where unit_id = ? ",
           [unitId],
           (trans, result) => {
             //tra ve array ket qua ( type: SQLResultSet )
+            console.log(result.rows);
             resolve(result.rows._array);
           }
         );
@@ -86,6 +88,9 @@ export async function getListWord(unitId) {
       (error) => {
         // neu co tra ve loi
         reject(error);
+      },
+      () => {
+        console.log("finish");
       }
     );
   });

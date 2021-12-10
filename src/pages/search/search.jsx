@@ -13,10 +13,15 @@ function Search(props) {
 
   return (
     <View style={{ paddingTop: StatusBar.currentHeight }}>
-      <Text>456</Text>
-      <Text>789</Text>
-      <Text>text:{text}</Text>
-      <Text>tra cii</Text>
+      <View
+        style={{
+          height: "100%",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Text>Search</Text>
+      </View>
     </View>
   );
 }
