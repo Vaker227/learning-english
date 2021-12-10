@@ -13,6 +13,7 @@ function Search(props) {
 
   return (
     <View style={{ paddingTop: StatusBar.currentHeight }}>
+
       <View
         style={{
           height: "100%",
@@ -20,7 +21,7 @@ function Search(props) {
           alignItems: "center",
         }}
       >
-        <Text>Search</Text>
+        <Text>Searsch</Text>
       </View>
     </View>
   );
