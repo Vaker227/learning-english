@@ -6,15 +6,15 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Login from "./src/pages/login/login.jsx";
 import Home from "./src/pages/home/home.jsx";
 import Account from "./src/pages/account/account.jsx";
-import Learning from "./src/pages/leaning/leanring.jsx";
+import Learning from "./src/pages/learning/learning.jsx";
 import Search from "./src/pages/search/search.jsx";
+import MyTabBar from "./src/components/tabBar.jsx";
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
     <>
-      <StatusBar backgroundColor="#61dafb" hidden={false} />
       <NavigationContainer>
         <Tab.Navigator
           initialRouteName="Login"
@@ -22,6 +22,7 @@ export default function App() {
             headerShown: false,
             tabBarIconStyle: { display: "none" },
           }}
+          tabBar={MyTabBar}
         >
           <Tab.Screen name="Học" component={Learning} />
           <Tab.Screen name="Tra cứu" component={Search} />

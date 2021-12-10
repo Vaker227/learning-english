@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, TextInput, Button } from "react-native";
+import { Text, View, TextInput, Button, StatusBar } from "react-native";
 
-import { getListChapter, getListUnit, getListWord } from "./leaning.service";
+import { getListChapter, getListUnit, getListWord } from "./learning.service";
 
 function Learning(props) {
   const [chapters, setChapters] = useState("");
@@ -18,7 +18,7 @@ function Learning(props) {
     });
   }
   return (
-    <View>
+    <View style={{ paddingTop: StatusBar.currentHeight }}>
       <Button onPress={loadChapters} title="Show chapter"></Button>
       <Text>Chapter:</Text>
       {list}
