@@ -31,7 +31,7 @@ export default function FacebookLogin() {
           />
 
           <View style={styles.textWrapper}>
-            <Text style={styles.hiText}>Khanh Pro</Text>
+            <Text style={styles.hiText}>Khanh Proooo</Text>
             <Text style={styles.userText}>ezo***89@gmail.com</Text>
             <Text style={styles.userText}>039***4844</Text>
             <TouchableOpacity style={styles.button}>
