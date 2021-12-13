@@ -64,7 +64,6 @@ export default function MyTabBar({ state, descriptors, navigation }) {
         stackState &&
         stackState.routes[stackState.index].name == "DetailUnit"
       ) {
-        console.log(stackState.routes[stackState.index].name);
         return "none";
       }
     }

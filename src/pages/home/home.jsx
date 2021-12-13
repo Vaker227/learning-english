@@ -8,7 +8,6 @@ import {
 } from "react-native";
 
 function Home(props) {
-  console.log(StatusBar.currentHeight);
   return (
     <View
       style={{
