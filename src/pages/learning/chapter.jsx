@@ -20,8 +20,8 @@ export default function Chapter({ navigation, ...props }) {
     }
     setViewUnits(!viewUnits);
   };
-  const moveToUnit = (unitId) => {
-    navigation.navigate("Detail", { id: unitId });
+  const moveToUnit = (unitId, unitName) => {
+    navigation.navigate("DetailUnit", { id: unitId, name: unitName });
   };
   const listUnits = useMemo(() => {
     if (!units) {
@@ -38,7 +38,7 @@ export default function Chapter({ navigation, ...props }) {
           padding: 10,
           marginBottom: 10,
         }}
-        onPress={() => moveToUnit(unit.id)}
+        onPress={() => moveToUnit(unit.id, unit.name)}
       >
         <View
           style={{
@@ -48,7 +48,7 @@ export default function Chapter({ navigation, ...props }) {
             alignItems: "center",
           }}
         >
-          <Text>
+          <Text style={{ maxWidth: "90%" }}>
             {unit.unit_name} - {unit.name}
           </Text>
           <Entypo name="chevron-right" size={24} color="#94e0eb" />

@@ -2,15 +2,18 @@ import React, { useEffect, useState } from "react";
 import {
   Text,
   View,
-  TextInput,
-  Button,
   StatusBar,
   ScrollView,
+  Animated,
+  Easing,
 } from "react-native";
 
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-const Stack = createNativeStackNavigator();
+import {
+  createStackNavigator,
+  CardStyleInterpolators,
+  TransitionPresets,
+} from "@react-navigation/stack";
+const Stack = createStackNavigator();
 
 import { getListChapter, getListUnit, getListWord } from "./learning.service";
 import Chapter from "./chapter.jsx";
@@ -51,10 +54,11 @@ function Learning(props) {
         initialRouteName="Chapters"
         screenOptions={{
           headerShown: false,
+          ...TransitionPresets.SlideFromRightIOS,
         }}
       >
         <Stack.Screen name="Chapters" component={ListChapter} />
-        <Stack.Screen name="Detail" component={DetaiUnit} />
+        <Stack.Screen name="DetailUnit" component={DetaiUnit} />
       </Stack.Navigator>
     </>
   );

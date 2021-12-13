@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StyleSheet, Text, View, Button, StatusBar } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import * as Linking from "expo-linking";
 
 import Login from "./src/pages/login/login.jsx";
 import Home from "./src/pages/home/home.jsx";
@@ -20,11 +21,12 @@ export default function App() {
           initialRouteName="Home"
           screenOptions={{
             headerShown: false,
+            tabBarHideOnKeyboard: true,
           }}
           tabBar={MyTabBar}
         >
-          <Tab.Screen name="Học" component={Learning} />
-          <Tab.Screen name="Tra cứu" component={Search} />
+          <Tab.Screen name="Learning" component={Learning} />
+          <Tab.Screen name="Seach" component={Search} />
           <Tab.Screen name="Home" component={Home} />
           <Tab.Screen name="Account" component={Account} />
         </Tab.Navigator>

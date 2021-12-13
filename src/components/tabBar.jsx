@@ -56,14 +56,32 @@ export default function MyTabBar({ state, descriptors, navigation }) {
       color="#0f7416"
     />,
   ];
+  const isDisplay = () => {
+    const tabState = navigation.getState();
+    if (tabState.routes[tabState.index].name == "Learning") {
+      const stackState = tabState.routes[tabState.index].state;
+      if (
+        stackState &&
+        stackState.routes[stackState.index].name == "DetailUnit"
+      ) {
+        console.log(stackState.routes[stackState.index].name);
+        return "none";
+      }
+    }
+    return "flex";
+  };
   return (
     <View
       style={{
+        display: isDisplay(),
         flexDirection: "row",
-        backgroundColor: "#fff",
+        backgroundColor: "white",
         height: 60,
         justifyContent: "center",
         alignItems: "center",
+        borderTopWidth: 1,
+        borderTopColor: "#d9d9d9",
+        borderStyle: "solid",
       }}
     >
       {state.routes.map((route, index) => {
