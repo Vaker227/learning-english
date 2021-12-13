@@ -13,7 +13,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 
-export default function FacebookLogin() {
+export default function AccountChild({ navigation, ...props }) {
   return (
     <>
       <StatusBar style="light" />
@@ -31,39 +31,56 @@ export default function FacebookLogin() {
           />
 
           <View style={styles.textWrapper}>
-            <Text style={styles.hiText}>Khanh Proooo linh</Text>
+            <Text style={styles.hiText}>Khanh ProVip</Text>
             <Text style={styles.userText}>ezo***89@gmail.com</Text>
             <Text style={styles.userText}>039***4844</Text>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("ChinhSuaHoSo");
+              }}
+              style={styles.button}
+            >
               <Text style={styles.buttonText}>Chỉnh sửa hồ sơ</Text>
             </TouchableOpacity>
           </View>
 
           <View style={styles.form}>
-            <TouchableOpacity style={styles.link}>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("ThongBao");
+              }}
+              style={styles.link}
+            >
               <Ionicons
                 name="notifications-circle-outline"
                 style={styles.icon}
               />
               <Text style={styles.linkText}>Thông Báo</Text>
             </TouchableOpacity>
-
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate("ChangePassword");
+                navigation.navigate("DoiMatKhau");
               }}
               style={styles.link}
             >
               <AntDesign name="unlock" style={styles.icon} />
               <Text style={styles.linkText}>Đổi Mật Khẩu</Text>
             </TouchableOpacity>
-
-            <TouchableOpacity style={styles.link}>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("HoTroHocTap");
+              }}
+              style={styles.link}
+            >
               <MaterialIcons name="support-agent" style={styles.icon} />
               <Text style={styles.linkText}>Hỗ Trợ Học Tập</Text>
             </TouchableOpacity>
-
-            <TouchableOpacity style={styles.link}>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("CongDong");
+              }}
+              style={styles.link}
+            >
               <AntDesign name="facebook-square" style={styles.icon} />
               <Text style={styles.linkText}>Cộng Đồng</Text>
             </TouchableOpacity>

@@ -6,7 +6,7 @@ import * as Linking from "expo-linking";
 
 import Login from "./src/pages/login/login.jsx";
 import Home from "./src/pages/home/home.jsx";
-import Account from "./src/pages/account/account.jsx";
+import Account from "./src/pages/account/index.jsx";
 import Learning from "./src/pages/learning/learning.jsx";
 import Search from "./src/pages/search/search.jsx";
 import MyTabBar from "./src/components/tabBar.jsx";
