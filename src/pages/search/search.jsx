@@ -39,7 +39,7 @@ function Search(props) {
   const [isSearching, setIsSearching] = useState(false);
   const [resultList, setResultList] = useState([]);
   const [timeoutSearch, setTimeoutSearching] = useState(0);
-  const [wordResult, setWordResult] = useState({});
+  const [wordResult, setWordResult] = useState(null);
   const [noListRelevant, setNoListRelevant] = useState(false);
 
   const handleChange = (text) => {
