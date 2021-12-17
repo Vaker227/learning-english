@@ -58,17 +58,20 @@ export default function MyTabBar({ state, descriptors, navigation }) {
   ];
   const isDisplay = () => {
     const tabState = navigation.getState();
-    if (tabState.routes[tabState.index].name == "Learning") {
+    if (["Learning", "Home"].includes(tabState.routes[tabState.index].name)) {
       const stackState = tabState.routes[tabState.index].state;
       if (
         stackState &&
-        stackState.routes[stackState.index].name == "DetailUnit"
+        ["DetailUnit", "HomeMemo", "HomeReview"].includes(
+          stackState.routes[stackState.index].name
+        )
       ) {
         return "none";
       }
     }
     return "flex";
   };
+
   return (
     <View
       style={{
@@ -113,7 +116,7 @@ export default function MyTabBar({ state, descriptors, navigation }) {
                 <>
                   {iconsFocus[index]}
                   <Text style={isFocused ? { color: "#0f7416" } : {}}>
-                    {route.name}
+                    {descriptors[route.key].options.title || route.name}
                   </Text>
                 </>
               ) : (

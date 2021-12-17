@@ -3,45 +3,46 @@ import {
   StyleSheet,
   Text,
   View,
+  ScrollView,
   TextInput,
   TouchableOpacity,
 } from "react-native";
 
-function Login(props) {
-  // const [username, setUsername] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [validation, setValidation] = useState(false);
-  // const handleChangeUsername = (e) => {
-  //   setUsername(e.target.value);
-  //   if (validation) {
-  //     setValidation(false);
-  //   }
-  // };
-  // const handleChangePassword = (e) => {
-  //   setPassword(e.target.value);
-  //   if (validation) {
-  //     setValidation(false);
-  //   }
-  // };
-  // const handleLogin = () => {
-  //   if (username == "admin" && password == "123") {
-  //     navigation.navigate("Home");
-  //     return;
-  //   }
-  //   setValidation(true);
-  // };
-  // const moving = (page) => {
-  //   navigation.navigate(page);
-  // };
+function Login({ navigation, ...props }) {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [validation, setValidation] = useState(false);
+  const handleChangeUsername = (e) => {
+    setUsername(e.target.value);
+    if (validation) {
+      setValidation(false);
+    }
+  };
+  const handleChangePassword = (e) => {
+    setPassword(e.target.value);
+    if (validation) {
+      setValidation(false);
+    }
+  };
+  const handleLogin = () => {
+    navigation.navigate("MainComponents");
+    // if (username == "admin" && password == "123") {
+    //   return;
+    // }
+    // setValidation(true);
+  };
+  const moving = (page) => {
+    navigation.navigate(page);
+  };
   return (
-    <View
-      style={{
+    <ScrollView
+      contentContainerStyle={{
         flex: 1,
         alignItems: "center",
         justifyContent: "center",
       }}
     >
-      {/* <TextInput
+      <TextInput
         style={styles.input}
         placeholder="Username"
         value={username}
@@ -50,6 +51,7 @@ function Login(props) {
       <TextInput
         style={styles.input}
         placeholder="Password"
+        secureTextEntry={true}
         value={password}
         onChange={handleChangePassword}
       ></TextInput>
@@ -68,8 +70,8 @@ function Login(props) {
         onPress={() => moving("Register")}
       >
         <Text>Register</Text>
-      </TouchableOpacity> */}
-    </View>
+      </TouchableOpacity>
+    </ScrollView>
   );
 }
 
@@ -78,23 +80,24 @@ const styles = StyleSheet.create({
     marginVertical: 5,
   },
   input: {
-    height: "40px",
+    height: 40,
     borderRadius: 10,
+    minWidth: "50%",
     borderStyle: "solid",
     borderWidth: 1,
     borderColor: "#a3b0ed",
     backgroundColor: "white",
-    marginVertical: "5px",
-    paddingHorizontal: "5px",
+    marginVertical: 5,
+    paddingHorizontal: 5,
   },
   loginBtn: {
     color: "white",
-    marginVertical: "10px",
+    marginVertical: 10,
     backgroundColor: "#a3b0ed",
     textAlign: "center",
     paddingVertical: 5,
     borderRadius: 10,
-    width: "120px",
+    width: 120,
     fontSize: 20,
   },
 });

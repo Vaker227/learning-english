@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 
-import { getListUnit, getListWord } from "./learning.service";
+import { getListUnit } from "./learning.service";
 
 export default function Chapter({ navigation, ...props }) {
   const [units, setUnits] = useState("");
@@ -51,7 +51,11 @@ export default function Chapter({ navigation, ...props }) {
           <Text style={{ maxWidth: "90%" }}>
             {unit.unit_name} - {unit.name}
           </Text>
-          <Entypo name="chevron-right" size={24} color="#94e0eb" />
+          <Entypo
+            name="chevron-right"
+            size={24}
+            color={props.bookId == 1 ? "#94e0eb" : "#6eeb34"}
+          />
         </View>
       </TouchableOpacity>
     ));
@@ -62,7 +66,7 @@ export default function Chapter({ navigation, ...props }) {
         onPress={handlePress}
         style={{
           backgroundColor: "white",
-          borderColor: "#94e0eb",
+          borderColor: props.bookId == 1 ? "#94e0eb" : "#6eeb34",
           borderStyle: "solid",
           borderWidth: 2,
           borderRadius: 10,
@@ -70,14 +74,25 @@ export default function Chapter({ navigation, ...props }) {
           marginTop: 20,
         }}
       >
-        <Text style={{ fontSize: 18 }}>{props.chapter.name}</Text>
+        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+          <Text style={{ fontSize: 18 }}>{props.chapter.name}</Text>
+          <Text
+            style={{
+              fontSize: 18,
+              fontWeight: "bold",
+              color: props.bookId == 1 ? "#94e0eb" : "#6eeb34",
+            }}
+          >
+            {props.bookId == 1 ? "Basic" : "Advance"}
+          </Text>
+        </View>
       </TouchableOpacity>
       {viewUnits && (
         <View
           style={{
             backgroundColor: "white",
             marginHorizontal: 20,
-            borderColor: "#94e0eb",
+            borderColor: props.bookId == 1 ? "#94e0eb" : "#6eeb34",
             borderStyle: "solid",
             borderWidth: 1,
             borderTopWidth: 0,

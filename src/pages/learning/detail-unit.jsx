@@ -3,15 +3,16 @@ import {
   Text,
   View,
   ScrollView,
-  ActivityIndicator,
+  ToastAndroid,
   StatusBar,
   TouchableOpacity,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
 
 import WordType from "../../components/word-type.jsx";
-import { getListUnit, getListWord } from "./learning.service";
+import { getListWord } from "./learning.service";
 import LoadingWordScreen from "../../components/loading-word-screen.jsx";
 import * as helper from "../../helper";
 
@@ -29,6 +30,7 @@ export default function DetaiUnit({ navigation, route }) {
         setShowLoading(false);
       } else {
         setShowLoading(true);
+        console.log("no current unit");
       }
     }
   }, [route.params.id]);
@@ -46,6 +48,9 @@ export default function DetaiUnit({ navigation, route }) {
       return;
     }
     setWordIndex(wordIndex - 1);
+  };
+  const handleBookMark = () => {
+    ToastAndroid.show("Saved to bookmark", ToastAndroid.SHORT);
   };
   return (
     <View
@@ -71,6 +76,18 @@ export default function DetaiUnit({ navigation, route }) {
       <Text style={{ textAlign: "center", fontSize: 20, paddingVertical: 10 }}>
         {route.params.name}
       </Text>
+      <TouchableOpacity
+        style={{
+          position: "absolute",
+          right: 10,
+          padding: 12,
+          top: StatusBar.currentHeight,
+          zIndex: 10,
+        }}
+        onPress={handleBookMark}
+      >
+        <FontAwesome name="bookmark" size={30} color="#ffbb00" />
+      </TouchableOpacity>
       {showLoading ? (
         <View style={{ height: "100%" }}>
           <LoadingWordScreen

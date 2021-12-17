@@ -40,11 +40,13 @@ function Search(props) {
   const [resultList, setResultList] = useState([]);
   const [timeoutSearch, setTimeoutSearching] = useState(0);
   const [wordResult, setWordResult] = useState(null);
-  const [noListRelevant, setNoListRelevant] = useState(false);
+  const [noResult, setNoResult] = useState(false);
+  const [showResult, setShowResult] = useState(false);
 
   const searchInput = useRef();
   const handleChange = (text) => {
     setText(text);
+    setShowResult(false);
     if (text === "") {
       setResultList([]);
     }
@@ -54,11 +56,12 @@ function Search(props) {
         if (text !== "") {
           searchWord(text).then((list) => {
             if (list.length < 1) {
-              setNoListRelevant(true);
+              setNoResult(true);
             } else {
-              setNoListRelevant(false);
+              setNoResult(false);
             }
             setResultList(list);
+            setShowResult(true);
           });
         }
       }, 1000)
@@ -77,7 +80,7 @@ function Search(props) {
   };
   const clearText = () => {
     setText("");
-    setNoListRelevant(false);
+    setNoResult(false);
     setWordResult(null);
     setResultList([]);
     setIsSearching(true);
@@ -170,7 +173,7 @@ function Search(props) {
                 })}
               </View>
             )}
-            {noListRelevant && (
+            {noResult && showResult && (
               <Text
                 style={{
                   backgroundColor: "white",
@@ -191,7 +194,7 @@ function Search(props) {
                   size={18}
                   color="#c4671a"
                 />{" "}
-                No word match
+                No results found
               </Text>
             )}
             {wordResult != null && (

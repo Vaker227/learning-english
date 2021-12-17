@@ -24,7 +24,7 @@ async function connectDatabase() {
 // chapter type: (id int, name: string)
 
 // return array chapter
-export async function getListChapter() {
+export async function getListAllChapter() {
   // db type Database
   const db = await connectDatabase();
   return new Promise((resolve, reject) => {
@@ -51,8 +51,31 @@ export async function getListUnit(chapterId) {
     db.transaction(
       (tx) => {
         tx.executeSql(
-          "select * from unit where chapter_id = ? ",
+          "select * from unit where chapter_id = ? ;",
           [chapterId],
+          (trans, result) => {
+            //tra ve array ket qua ( type: SQLResultSet )
+            resolve(result.rows._array);
+          }
+        );
+      },
+      (error) => {
+        // neu co tra ve loi
+        reject(error);
+      }
+    );
+  });
+}
+// return array chapter
+export async function getListUnitFromBook(bookId) {
+  // db type Database
+  const db = await connectDatabase();
+  return new Promise((resolve, reject) => {
+    db.transaction(
+      (tx) => {
+        tx.executeSql(
+          "select unit.id,unit.name,unit_name from unit inner join chapter on unit.chapter_id = chapter.id where chapter.book_id = ?;",
+          [bookId],
           (trans, result) => {
             //tra ve array ket qua ( type: SQLResultSet )
             resolve(result.rows._array);
@@ -75,7 +98,7 @@ export async function getListWord(unitId) {
     db.transaction(
       (tx) => {
         return tx.executeSql(
-          "select * from word where unit_id = ? ",
+          "select * from word where unit_id = ? ;",
           [unitId],
           (trans, result) => {
             //tra ve array ket qua ( type: SQLResultSet )

@@ -1,35 +1,44 @@
 import React, { useEffect, useState } from "react";
-import {
-  Text,
-  View,
-  StatusBar,
-  ScrollView,
-  Animated,
-  Easing,
-} from "react-native";
-
+import { Text, View, StatusBar, ScrollView, Button } from "react-native";
 import {
   createStackNavigator,
-  CardStyleInterpolators,
   TransitionPresets,
 } from "@react-navigation/stack";
 const Stack = createStackNavigator();
+import * as Linking from "expo-linking";
 
-import { getListChapter, getListUnit, getListWord } from "./learning.service";
+import { getListAllChapter } from "./learning.service";
 import Chapter from "./chapter.jsx";
 import DetaiUnit from "./detail-unit.jsx";
+import { paymentRequest } from "../payment/payment.service";
 
 function ListChapter({ navigation, ...props }) {
   const [chapters, setChapters] = useState("");
   useEffect(async () => {
-    setChapters(await getListChapter());
+    setChapters(await getListAllChapter());
   }, []);
+
+  const handlePayment = () => {
+    const url = Linking.createURL("learning");
+    paymentRequest(url).then((data) => {
+      Linking.openURL(data.deeplink);
+    });
+  };
+
   let list;
   if (chapters) {
     list = chapters.map((chapter, index) => {
-      return <Chapter key={index} chapter={chapter} navigation={navigation} />;
+      return (
+        <Chapter
+          key={index}
+          chapter={chapter}
+          navigation={navigation}
+          bookId={chapter.book_id}
+        />
+      );
     });
   }
+
   return (
     <View
       style={{
@@ -42,6 +51,7 @@ function ListChapter({ navigation, ...props }) {
           Học từ
         </Text>
         <View style={{ padding: 20 }}>{list}</View>
+        <Button onPress={handlePayment} title="Payment"></Button>
       </ScrollView>
     </View>
   );

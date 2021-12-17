@@ -16,7 +16,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 export default function AccountChild({ navigation, ...props }) {
   return (
     <>
-      <StatusBar style="light" />
+      {/* <StatusBar style="light" /> */}
 
       <Image
         source={require("../../../assets/background.jpg")}

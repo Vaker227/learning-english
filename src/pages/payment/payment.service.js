@@ -1,5 +1,6 @@
 const axios = require("axios");
 const CryptoES = require("crypto-es").default;
+const helper = require("../../helper");
 // const partnerCode = "MOMOFFN920211207";
 // const accessKey = "deui0DLNek8KGvqu";
 // const secretkey = "LaQ9paxkJm92j4ujAHcXqmetc5lbb7uB";
@@ -14,63 +15,75 @@ var secretkey = "K951B6PE1waDMi640xX08PD3vg6EkVlz";
 var requestId = partnerCode + new Date().getTime();
 var orderId = requestId;
 var orderInfo = "pay with MoMo";
-var redirectUrl = "exp://192.168.100.12:19000";
+// var redirectUrl = "exp://192.168.100.12:19000";
 var ipnUrl = "14.231.171.40:3000/ipn";
 // var ipnUrl = redirectUrl = "https://webhook.site/454e7b77-f177-4ece-8236-ddf1c26ba7f8";
 var amount = "1000";
 var requestType = "captureWallet";
 var extraData = ""; //pass empty value if your merchant does not have stores
 
-var rawSignature =
-  "accessKey=" +
-  accessKey +
-  "&amount=" +
-  amount +
-  "&extraData=" +
-  extraData +
-  "&ipnUrl=" +
-  ipnUrl +
-  "&orderId=" +
-  orderId +
-  "&orderInfo=" +
-  orderInfo +
-  "&partnerCode=" +
-  partnerCode +
-  "&redirectUrl=" +
-  redirectUrl +
-  "&requestId=" +
-  requestId +
-  "&requestType=" +
-  requestType;
+function createSignature(redirectUrl) {
+  var rawSignature =
+    "accessKey=" +
+    accessKey +
+    "&amount=" +
+    amount +
+    "&extraData=" +
+    extraData +
+    "&ipnUrl=" +
+    ipnUrl +
+    "&orderId=" +
+    orderId +
+    "&orderInfo=" +
+    orderInfo +
+    "&partnerCode=" +
+    partnerCode +
+    "&redirectUrl=" +
+    redirectUrl +
+    "&requestId=" +
+    requestId +
+    "&requestType=" +
+    requestType;
 
-var signature = CryptoES.HmacSHA256(rawSignature, secretkey);
+  var signature = CryptoES.HmacSHA256(rawSignature, secretkey);
+  return signature.toString(CryptoES.enc.Hex);
+}
 
-console.log(signature.toString(CryptoES.enc.Hex));
-
-module.exports.paymentRequest = () => {
-  return (
-    axios
-      .post("https://test-payment.momo.vn/v2/gateway/api/create", {
-    //   .post("https://test-payment.momo.vn/gw_payment/transactionProcessor", {
-        partnerCode: partnerCode,
-        accessKey: accessKey,
-        requestId: requestId,
-        amount: amount,
-        orderId: orderId,
-        orderInfo: orderInfo,
-        redirectUrl: redirectUrl,
-        ipnUrl: ipnUrl,
-        extraData: extraData,
-        requestType: requestType,
-        signature: signature.toString(CryptoES.enc.Hex),
-        lang: "en",
-      })
-      .then((res) => {
-        console.log(res.data);
-        return res.data;
-      })
-      .catch((err) => {
-        console.log(err.response.data);
-      })
-  );
+module.exports.paymentRequest = (redirectUrl) => {
+  // return axios
+  //   .post("https://test-payment.momo.vn/v2/gateway/api/create", {
+  //     //   .post("https://test-payment.momo.vn/gw_payment/transactionProcessor", {
+  //     partnerCode: partnerCode,
+  //     accessKey: accessKey,
+  //     requestId: requestId,
+  //     amount: amount,
+  //     orderId: orderId,
+  //     orderInfo: orderInfo,
+  //     redirectUrl: redirectUrl,
+  //     ipnUrl: ipnUrl,
+  //     extraData: extraData,
+  //     requestType: requestType,
+  //     signature: createSignature(redirectUrl),
+  //     lang: "en",
+  //   })
+  //   .then((res) => {
+  //     console.log(res.data);
+  //     return res.data;
+  //   })
+  //   .catch((err) => {
+  //     console.log(err.response.data);
+  //   });
+  return axios
+    .post(`${helper.getUrl()}/create-payment`, {
+      redirectUrl,
+      amount: 1000,
+      orderInfo: "unlock chapter",
+    })
+    .then((res) => {
+      console.log(res.data);
+      return res.data;
+    })
+    .catch((err) => {
+      console.log(err.response.data);
+    });
 };
