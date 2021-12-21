@@ -3,7 +3,6 @@ import { StyleSheet, Text, View, Button, StatusBar } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import * as Linking from "expo-linking";
 
 import Login from "./src/pages/login/login.jsx";
 import Home from "./src/pages/home/home.jsx";
@@ -52,8 +51,6 @@ function MainCompoments({ navigation, ...props }) {
 }
 
 function App() {
-  const url = Linking.useURL(Linking.createURL());
-  console.log(url);
   return (
     <>
       <NavigationContainer>

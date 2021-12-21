@@ -89,11 +89,11 @@ function Search(props) {
 
   return (
     <>
-      <StatusBar style="default" />
+      <StatusBar translucent />
       <ScrollView
         contentContainerStyle={{ flex: 1 }}
         style={{
-          padding: StatusBar.currentHeight,
+          paddingTop: StatusBar.currentHeight,
         }}
       >
         {!isSearching && text === "" && (

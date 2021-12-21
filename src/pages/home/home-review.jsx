@@ -6,10 +6,12 @@ import {
   TouchableOpacity,
   StatusBar,
   ScrollView,
+  Pressable,
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import { AntDesign } from "@expo/vector-icons";
 import { Foundation } from "@expo/vector-icons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { getListUnitFromBook, getListWord } from "../learning/learning.service";
 import WordType from "../../components/word-type";
@@ -27,9 +29,9 @@ export default function HomeReview({ navigation, ...props }) {
     setBasicSet(!basicSet);
     setSelectedUnit({ index: 0 });
     if (basicSet) {
-      getListWord(basicUnitList[0].id).then((data) => setUnitListWord(data));
-    } else {
       getListWord(advanceUnitList[0].id).then((data) => setUnitListWord(data));
+    } else {
+      getListWord(basicUnitList[0].id).then((data) => setUnitListWord(data));
     }
   };
   // su kien chuyen unit
@@ -45,7 +47,18 @@ export default function HomeReview({ navigation, ...props }) {
     }
     setViewingWord(wordIndex);
   };
-  const handleSaveWord = () => {
+  const handleSaveWord = async (value) => {
+    const newWordId = [value];
+    const array = await AsyncStorage.getItem("word-memo");
+    let objArray = JSON.parse(array);
+    if (objArray != null) {
+      if (objArray.indexOf(value) === -1) {
+        objArray = objArray.concat(newWordId);
+      }
+      await AsyncStorage.setItem("word-memo", JSON.stringify(objArray));
+    } else {
+      await AsyncStorage.setItem("word-memo", JSON.stringify(newWordId));
+    }
     ToastAndroid.show("Đã lưu vào ghi nhớ", ToastAndroid.SHORT);
   };
   // load unit khi khi khoi tao
@@ -146,6 +159,7 @@ export default function HomeReview({ navigation, ...props }) {
                 color: "white",
               }}
               onValueChange={handleChangeUnit}
+              mode="dropdown"
               prompt="Chọn unit"
             >
               {listUnit.map((unit) => (
@@ -173,11 +187,18 @@ export default function HomeReview({ navigation, ...props }) {
             ? listUnit[selectedUnit.index].name
             : ""}
         </Text>
-        <ScrollView style={{ maxHeight: 370 }}>
+        <ScrollView
+          style={{
+            maxHeight: 370,
+            backgroundColor: "white",
+            padding: 10,
+            borderRadius: 10,
+          }}
+        >
           {unitListWord.map((word, wordIndex) => {
             return (
               <View style={{ marginVertical: 5 }} key={word.id}>
-                <TouchableOpacity
+                <Pressable
                   onPress={() => handleShowMean(wordIndex)}
                   style={{
                     flexDirection: "row",
@@ -188,8 +209,8 @@ export default function HomeReview({ navigation, ...props }) {
                 >
                   <Text>{word.content}</Text>
                   <Text style={{ color: "#8f8f8f" }}>{word.pronun_en}</Text>
-                  <WordType type={word.word_form} />
-                </TouchableOpacity>
+                  <WordType type={word.word_form} size={16} />
+                </Pressable>
                 {viewingWord == wordIndex ? (
                   <View
                     style={{
@@ -200,12 +221,12 @@ export default function HomeReview({ navigation, ...props }) {
                     }}
                   >
                     <Text style={{ color: "#3d90e3" }}>{word.mean_vn}</Text>
-                    <Foundation
-                      name="book-bookmark"
+                    <AntDesign
+                      name="book"
                       size={24}
                       color="#ffbb00"
                       style={{ marginLeft: 20 }}
-                      onPress={handleSaveWord}
+                      onPress={() => handleSaveWord(word.id)}
                     />
                   </View>
                 ) : null}

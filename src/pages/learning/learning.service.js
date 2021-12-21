@@ -113,3 +113,32 @@ export async function getListWord(unitId) {
     );
   });
 }
+
+String.prototype.replaceAt = function (index, value) {
+  return this.slice(0, index) + value + this.slice(index + 1);
+};
+
+export async function getListWordFromListWordId(listWordId) {
+  // db type Database
+  const db = await connectDatabase();
+  return new Promise((resolve, reject) => {
+    db.transaction(
+      (tx) => {
+        let strTemp = listWordId.reduce((pre, cur) => `${pre}${cur},`, "(");
+        strTemp = strTemp.replaceAt(strTemp.length - 1, ")");
+        return tx.executeSql(
+          `select * from word where id IN ${strTemp} ;`,
+          "",
+          (trans, result) => {
+            //tra ve array ket qua ( type: SQLResultSet )
+            resolve(result.rows._array);
+          }
+        );
+      },
+      (error) => {
+        // neu co tra ve loi
+        reject(error);
+      }
+    );
+  });
+}

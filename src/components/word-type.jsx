@@ -5,7 +5,7 @@ export default function WordType(props) {
   const style = {
     color: "white",
     paddingHorizontal: 5,
-    fontSize: 20,
+    fontSize: props.size || 20,
     borderRadius: 5,
   };
   switch (props.type) {

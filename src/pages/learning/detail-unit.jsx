@@ -7,6 +7,7 @@ import {
   StatusBar,
   TouchableOpacity,
 } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AntDesign } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
@@ -49,8 +50,23 @@ export default function DetaiUnit({ navigation, route }) {
     }
     setWordIndex(wordIndex - 1);
   };
-  const handleBookMark = () => {
-    ToastAndroid.show("Saved to bookmark", ToastAndroid.SHORT);
+  const handleBookMark = async () => {
+    if (!listWord[wordIndex]) {
+      return;
+    }
+    const value = listWord[wordIndex].id;
+    const newWordId = [value];
+    const array = await AsyncStorage.getItem("word-memo");
+    let objArray = JSON.parse(array);
+    if (objArray != null) {
+      if (objArray.indexOf(value) === -1) {
+        objArray = objArray.concat(newWordId);
+      }
+      await AsyncStorage.setItem("word-memo", JSON.stringify(objArray));
+    } else {
+      await AsyncStorage.setItem("word-memo", JSON.stringify(newWordId));
+    }
+    ToastAndroid.show("Đã lưu vào ghi nhớ", ToastAndroid.SHORT);
   };
   return (
     <View

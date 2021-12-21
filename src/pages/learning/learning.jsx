@@ -5,25 +5,16 @@ import {
   TransitionPresets,
 } from "@react-navigation/stack";
 const Stack = createStackNavigator();
-import * as Linking from "expo-linking";
 
 import { getListAllChapter } from "./learning.service";
 import Chapter from "./chapter.jsx";
 import DetaiUnit from "./detail-unit.jsx";
-import { paymentRequest } from "../payment/payment.service";
 
 function ListChapter({ navigation, ...props }) {
   const [chapters, setChapters] = useState("");
   useEffect(async () => {
     setChapters(await getListAllChapter());
   }, []);
-
-  const handlePayment = () => {
-    const url = Linking.createURL("learning");
-    paymentRequest(url).then((data) => {
-      Linking.openURL(data.deeplink);
-    });
-  };
 
   let list;
   if (chapters) {
@@ -46,12 +37,13 @@ function ListChapter({ navigation, ...props }) {
         backgroundColor: "#f2f2f2",
       }}
     >
+      <StatusBar translucent />
+
       <ScrollView>
         <Text style={{ textAlign: "center", paddingVertical: 5, fontSize: 20 }}>
           Học từ
         </Text>
         <View style={{ padding: 20 }}>{list}</View>
-        <Button onPress={handlePayment} title="Payment"></Button>
       </ScrollView>
     </View>
   );
