@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import Login from "./src/pages/login/login.jsx";
+import Register from "./src/pages/login/register.jsx";
 import Home from "./src/pages/home/home.jsx";
 import Account from "./src/pages/account/index.jsx";
 import Learning from "./src/pages/learning/learning.jsx";
@@ -61,6 +62,7 @@ function App() {
           }}
         >
           <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Register" component={Register} />
           <Stack.Screen name="MainComponents" component={MainCompoments} />
         </Stack.Navigator>
       </NavigationContainer>

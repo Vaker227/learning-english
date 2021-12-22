@@ -25,11 +25,14 @@ function Login({ navigation, ...props }) {
     }
   };
   const handleLogin = () => {
+    if (username == "admin" && password == "123") {
+      navigation.navigate("MainComponents");
+      return;
+    }
+    setValidation(true);
+  };
+  const handleLoginAsGuest = () => {
     navigation.navigate("MainComponents");
-    // if (username == "admin" && password == "123") {
-    //   return;
-    // }
-    // setValidation(true);
   };
   const moving = (page) => {
     navigation.navigate(page);
@@ -55,15 +58,19 @@ function Login({ navigation, ...props }) {
         value={password}
         onChange={handleChangePassword}
       ></TextInput>
-      {validation && <Text style={{ color: "red" }}>Wrong info</Text>}
+      {validation && (
+        <Text style={{ color: "red" }}>Invalid username or password</Text>
+      )}
       <TouchableOpacity style={styles.touchable} onPress={handleLogin}>
-        <Text style={styles.loginBtn}>Login</Text>
+        <Text style={[styles.loginBtn, { backgroundColor: "#a3b0ed" }]}>
+          Login
+        </Text>
       </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.touchable}
-        onPress={() => moving("ForgetPassword")}
-      >
-        <Text>Forget password</Text>
+      <Text>Or</Text>
+      <TouchableOpacity style={styles.touchable} onPress={handleLoginAsGuest}>
+        <Text style={[styles.loginBtn, { backgroundColor: "#5fcf6e" }]}>
+          Login as Guest
+        </Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.touchable}
@@ -80,24 +87,24 @@ const styles = StyleSheet.create({
     marginVertical: 5,
   },
   input: {
-    height: 40,
+    padding: 10,
+    paddingHorizontal: 15,
     borderRadius: 10,
-    minWidth: "50%",
+    width: "70%",
+    fontSize: 20,
     borderStyle: "solid",
     borderWidth: 1,
     borderColor: "#a3b0ed",
     backgroundColor: "white",
     marginVertical: 5,
-    paddingHorizontal: 5,
   },
   loginBtn: {
     color: "white",
     marginVertical: 10,
-    backgroundColor: "#a3b0ed",
     textAlign: "center",
-    paddingVertical: 5,
+    paddingVertical: 10,
     borderRadius: 10,
-    width: 120,
+    width: 150,
     fontSize: 20,
   },
 });

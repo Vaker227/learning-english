@@ -3,24 +3,24 @@ import {
   StyleSheet,
   SafeAreaView,
   View,
+  ScrollView,
   Text,
   TouchableOpacity,
   TextInput,
+  StatusBar,
 } from "react-native";
-import { StatusBar } from "expo-status-bar";
-import { Entypo } from '@expo/vector-icons';
+import { Entypo } from "@expo/vector-icons";
 import Constants from "expo-constants";
 
 export default function HoTroHocTap() {
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar style="light" />
+      <StatusBar translucent />
 
-      <View style={styles.content}>
-          <Text style={styles.textSupport}>Hỗ Trợ Học Tập</Text>
+      <ScrollView style={styles.content}>
+        <Text style={styles.textSupport}>Hỗ Trợ Học Tập</Text>
 
         <View style={styles.form}>
-          
           <TouchableOpacity style={styles.button}>
             <Text style={styles.buttonText}>Hỗ Trợ App</Text>
           </TouchableOpacity>
@@ -43,11 +43,13 @@ export default function HoTroHocTap() {
             <Text style={styles.buttonText}>Những Câu Hỏi Thường Gặp</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>Phiên Bản App{"\n"}<Text style = {styles.version}>1.10.2</Text></Text>
+            <Text style={styles.buttonText}>
+              Phiên Bản App{"\n"}
+              <Text style={styles.version}>1.10.2</Text>
+            </Text>
           </TouchableOpacity>
         </View>
-
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -71,14 +73,14 @@ const styles = StyleSheet.create({
     fontSize: 20,
     lineHeight: 50,
     fontWeight: "bold",
-    color:"black",
+    color: "black",
   },
   form: {
-    marginTop:20,
+    marginTop: 20,
     marginBottom: 30,
   },
   inputPassword: {
-    marginBottom:10,
+    marginBottom: 10,
     height: 60,
     borderRadius: 15,
     paddingHorizontal: 30,
@@ -99,7 +101,7 @@ const styles = StyleSheet.create({
     // borderColor: "green",
   },
   buttonText: {
-    color:"black",
-    marginLeft:30
+    color: "black",
+    marginLeft: 30,
   },
 });

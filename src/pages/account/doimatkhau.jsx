@@ -6,15 +6,15 @@ import {
   Text,
   TouchableOpacity,
   TextInput,
+  StatusBar,
 } from "react-native";
-import { StatusBar } from "expo-status-bar";
 import { Entypo } from "@expo/vector-icons";
 import Constants from "expo-constants";
 
 export default function DoiMatKhau() {
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar style="light" />
+      <StatusBar translucent />
 
       <View style={styles.content}>
         <Text style={styles.textPass}>Đổi mật khẩu</Text>
@@ -117,8 +117,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffd978",
     justifyContent: "center",
     marginTop: 30,
-    marginLeft:80,
-    marginRight:80,
+    marginLeft: 80,
+    marginRight: 80,
   },
   buttonSaveText: {
     ...TEXT,

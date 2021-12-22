@@ -4,11 +4,11 @@ import {
   SafeAreaView,
   View,
   Text,
+  ScrollView,
   Image,
   TouchableOpacity,
-  TextInput,
+  StatusBar,
 } from "react-native";
-import { StatusBar } from "expo-status-bar";
 import { Ionicons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -16,90 +16,96 @@ import { MaterialIcons } from "@expo/vector-icons";
 export default function AccountChild({ navigation, ...props }) {
   return (
     <>
+      <StatusBar translucent />
+      <ScrollView>
+        <Image
+          source={require("../../../assets/background.jpg")}
+          style={styles.banner}
+        />
+        <SafeAreaView style={styles.container}>
+          <View style={styles.content}>
+            <Image
+              source={require("../../../assets/user.png")}
+              style={styles.userImage}
+            />
 
-      <Image
-        source={require("../../../assets/background.jpg")}
-        style={styles.banner}
-      />
+            <View style={styles.textWrapper}>
+              <Text style={styles.userText}>Khanh ProVip</Text>
+              <Text style={styles.subUserText}>ezo***89@gmail.com</Text>
+              <Text style={styles.subUserText}>039***4844</Text>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate("ChinhSuaHoSo");
+                }}
+                style={styles.button}
+              >
+                <Text style={styles.buttonText}>Chỉnh sửa hồ sơ</Text>
+              </TouchableOpacity>
+            </View>
 
-      <SafeAreaView style={styles.container}>
-        <View style={styles.content}>
-          <Image
-            source={require("../../../assets/user.png")}
-            style={styles.userImage}
-          />
-
-          <View style={styles.textWrapper}>
-            <Text style={styles.userText}>Khanh ProVip</Text>
-            <Text style={styles.subUserText}>ezo***89@gmail.com</Text>
-            <Text style={styles.subUserText}>039***4844</Text>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate("ChinhSuaHoSo");
-              }}
-              style={styles.button}
-            >
-              <Text style={styles.buttonText}>Chỉnh sửa hồ sơ</Text>
-            </TouchableOpacity>
+            <View style={styles.form}>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate("ThongBao");
+                }}
+                style={styles.link}
+              >
+                <Ionicons
+                  name="notifications-circle-outline"
+                  style={styles.icon}
+                />
+                <Text style={styles.linkText}>Thông Báo</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate("DoiMatKhau");
+                }}
+                style={styles.link}
+              >
+                <AntDesign name="unlock" style={styles.icon} />
+                <Text style={styles.linkText}>Đổi Mật Khẩu</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate("HoTroHocTap");
+                }}
+                style={styles.link}
+              >
+                <MaterialIcons name="support-agent" style={styles.icon} />
+                <Text style={styles.linkText}>Hỗ Trợ Học Tập</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate("CongDong");
+                }}
+                style={styles.link}
+              >
+                <AntDesign name="facebook-square" style={styles.icon} />
+                <Text style={styles.linkText}>Cộng Đồng</Text>
+              </TouchableOpacity>
+            </View>
           </View>
 
-          <View style={styles.form}>
+          <View style={styles.footer}>
+            <View style={styles.divider}>
+              <View style={styles.dividerLine} />
+              <Text style={styles.dividerText}>HOẶC</Text>
+              <View style={styles.dividerLine} />
+            </View>
+
             <TouchableOpacity
+              style={[styles.button, styles.buttonRegister]}
               onPress={() => {
-                navigation.navigate("ThongBao");
+                navigation.navigate("Login");
               }}
-              style={styles.link}
             >
-              <Ionicons
-                name="notifications-circle-outline"
-                style={styles.icon}
-              />
-              <Text style={styles.linkText}>Thông Báo</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate("DoiMatKhau");
-              }}
-              style={styles.link}
-            >
-              <AntDesign name="unlock" style={styles.icon} />
-              <Text style={styles.linkText}>Đổi Mật Khẩu</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate("HoTroHocTap");
-              }}
-              style={styles.link}
-            >
-              <MaterialIcons name="support-agent" style={styles.icon} />
-              <Text style={styles.linkText}>Hỗ Trợ Học Tập</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate("CongDong");
-              }}
-              style={styles.link}
-            >
-              <AntDesign name="facebook-square" style={styles.icon} />
-              <Text style={styles.linkText}>Cộng Đồng</Text>
+              <Text style={[styles.buttonText, styles.buttonRegisterText]}>
+                Đăng Xuất
+              </Text>
             </TouchableOpacity>
           </View>
-        </View>
-
-        <View style={styles.footer}>
-          <View style={styles.divider}>
-            <View style={styles.dividerLine} />
-            <Text style={styles.dividerText}>HOẶC</Text>
-            <View style={styles.dividerLine} />
-          </View>
-
-          <TouchableOpacity style={[styles.button, styles.buttonRegister]}>
-            <Text style={[styles.buttonText, styles.buttonRegisterText]}>
-              Đăng Xuất
-            </Text>
-          </TouchableOpacity>
-        </View>
-      </SafeAreaView>
+        </SafeAreaView>
+      </ScrollView>
     </>
   );
 }
@@ -111,7 +117,7 @@ const TEXT = {
 
 const styles = StyleSheet.create({
   banner: {
-    backgroundColor:"#ccc",
+    backgroundColor: "#ccc",
     resizeMode: "contain",
     position: "relative",
     width: "100%",
@@ -130,7 +136,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     // justifyContent: "space-between",
-    backgroundColor:"#fff",
+    backgroundColor: "#fff",
   },
   content: {
     padding: 22,
@@ -159,8 +165,8 @@ const styles = StyleSheet.create({
     marginRight: 80,
     // shadowColor:"black",
     borderRadius: 8,
-    borderStyle:"solid",
-    borderWidth:0.2,
+    borderStyle: "solid",
+    borderWidth: 0.2,
   },
   buttonText: {
     ...TEXT,
@@ -207,7 +213,6 @@ const styles = StyleSheet.create({
   },
   buttonRegister: {
     width: "100%",
-    // backgroundColor: "#e7f3ff",
   },
   buttonRegisterText: {
     color: "#FF8000",
