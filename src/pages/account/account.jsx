@@ -26,13 +26,13 @@ export default function AccountChild({ navigation, ...props }) {
         <View style={styles.content}>
           <Image
             source={require("../../../assets/user.png")}
-            style={styles.user}
+            style={styles.userImage}
           />
 
           <View style={styles.textWrapper}>
-            <Text style={styles.hiText}>Khanh ProVip</Text>
-            <Text style={styles.userText}>ezo***89@gmail.com</Text>
-            <Text style={styles.userText}>039***4844</Text>
+            <Text style={styles.userText}>Khanh ProVip</Text>
+            <Text style={styles.subUserText}>ezo***89@gmail.com</Text>
+            <Text style={styles.subUserText}>039***4844</Text>
             <TouchableOpacity
               onPress={() => {
                 navigation.navigate("ChinhSuaHoSo");
@@ -109,17 +109,16 @@ const TEXT = {
   textAlign: "center",
 };
 
-const handlePress = {};
-
 const styles = StyleSheet.create({
   banner: {
+    backgroundColor:"#ccc",
     resizeMode: "contain",
     position: "relative",
     width: "100%",
     height: null,
     aspectRatio: 750 / 460, // Image ratio
   },
-  user: {
+  userImage: {
     position: "absolute",
     top: -50,
     left: 110,
@@ -131,34 +130,37 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     // justifyContent: "space-between",
+    backgroundColor:"#fff",
   },
   content: {
     padding: 22,
   },
   textWrapper: {
-    marginTop: 10,
-    marginBottom: 10,
+    marginTop: 25,
+    // marginBottom: 10,
   },
-  hiText: {
+  userText: {
     ...TEXT,
     fontSize: 20,
     lineHeight: 50,
     fontWeight: "bold",
   },
-  userText: {
+  subUserText: {
     ...TEXT,
     fontSize: 16,
     lineHeight: 30,
   },
   button: {
     height: 42,
-    backgroundColor: "#D0FA58",
+    // backgroundColor: "#D0FA58",
     justifyContent: "center",
     marginVertical: 15,
     marginLeft: 80,
     marginRight: 80,
     // shadowColor:"black",
-    borderRadius: 12,
+    borderRadius: 8,
+    borderStyle:"solid",
+    borderWidth:0.2,
   },
   buttonText: {
     ...TEXT,
@@ -177,7 +179,7 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
   },
   linkText: {
-    color: "#1c6ede",
+    color: "black",
     // textAlign: "center",
     marginLeft: 40,
     fontSize: 20,
@@ -205,7 +207,7 @@ const styles = StyleSheet.create({
   },
   buttonRegister: {
     width: "100%",
-    backgroundColor: "#e7f3ff",
+    // backgroundColor: "#e7f3ff",
   },
   buttonRegisterText: {
     color: "#FF8000",

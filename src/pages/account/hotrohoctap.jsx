@@ -8,110 +8,45 @@ import {
   TextInput,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
-// import { FontAwesome5 } from "@expo/vector-icons";
 import { Entypo } from '@expo/vector-icons';
 import Constants from "expo-constants";
 
 export default function HoTroHocTap() {
   return (
     <SafeAreaView style={styles.container}>
-      {/* https://docs.expo.io/versions/latest/sdk/status-bar */}
       <StatusBar style="light" />
 
       <View style={styles.content}>
-        {/* <View style={styles.textWrapper}> */}
-          <Text style={styles.textPass}>Hỗ Trợ Học Tập</Text>
-        {/* </View> */}
+          <Text style={styles.textSupport}>Hỗ Trợ Học Tập</Text>
 
         <View style={styles.form}>
-          {/* https://docs.expo.io/guides/icons */}
           
-
-          {/* https://reactnative.dev/docs/textinput
-          <View>
-          <Entypo name="eye-with-line" style={styles.iconLock}/>
-            <TextInput
-              style={styles.inputPassword}
-              keyboardType="default"
-              secureTextEntry={true}
-              autoFocus={true}
-              placeholder="Mật Khẩu Cũ"
-              placeholderTextColor="#929292"
-            />
-          </View>
-          
-
-          {/* <FontAwesome5 name="lock" style={styles.iconLock} /> */}
-          
-          {/* import { Entypo } from '@expo/vector-icons'; */}
-
-          {/* https://reactnative.dev/docs/textinput */}
-          {/* <View>
-          <Entypo name="eye-with-line" style={styles.iconLock}/>
-            <TextInput
-              style={styles.inputPassword}
-              keyboardType="default"
-              secureTextEntry={true}
-              autoFocus={true}
-              placeholder="Mật Khẩu Mới"
-              placeholderTextColor="#929292"
-            />
-          </View> */}
-          
-
-          
-          {/* <FontAwesome5 name="lock" style={styles.iconLock} /> */}
-
-          {/* https://reactnative.dev/docs/textinput */}
-          {/* <View>
-          <Entypo name="eye-with-line" style={styles.iconLock}/>
-          <TextInput
-            style={styles.inputPassword}
-            keyboardType="default"
-            secureTextEntry={true}
-            autoFocus={true}
-            placeholder="Nhập Lại Mật Khẩu Mới"
-            placeholderTextColor="#929292"
-          />
-          </View> */}
-
-
-          {/* https://reactnative.dev/docs/touchableopacity */}
-          <TouchableOpacity style={styles.buttonLogin}>
-            <Text style={styles.buttonLoginText}>Hỗ Trợ App</Text>
+          <TouchableOpacity style={styles.button}>
+            <Text style={styles.buttonText}>Hỗ Trợ App</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonLogin}>
-            <Text style={styles.buttonLoginText}>Hỗ Trợ Đọc Sách</Text>
+          <TouchableOpacity style={styles.button}>
+            <Text style={styles.buttonText}>Hỗ Trợ Đọc Sách</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonLogin}>
-            <Text style={styles.buttonLoginText}>Thử Thách Hoàn Tiền 30 ngày</Text>
+          <TouchableOpacity style={styles.button}>
+            <Text style={styles.buttonText}>Thử Thách Hoàn Tiền 30 ngày</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonLogin}>
-            <Text style={styles.buttonLoginText}>Chia sẻ ứng dụng</Text>
+          <TouchableOpacity style={styles.button}>
+            <Text style={styles.buttonText}>Chia sẻ ứng dụng</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonLogin}>
-            <Text style={styles.buttonLoginText}>Góp ý</Text>
+          <TouchableOpacity style={styles.button}>
+            <Text style={styles.buttonText}>Góp ý</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonLogin}>
-            <Text style={styles.buttonLoginText}>Ứng dụng của nhà phát triển</Text>
+          <TouchableOpacity style={styles.button}>
+            <Text style={styles.buttonText}>Ứng dụng của nhà phát triển</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonLogin}>
-            <Text style={styles.buttonLoginText}>Những Câu Hỏi Thường Gặp</Text>
+          <TouchableOpacity style={styles.button}>
+            <Text style={styles.buttonText}>Những Câu Hỏi Thường Gặp</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonLogin}>
-            <Text style={styles.buttonLoginText}>Phiên Bản App{"\n"}<Text style = {styles.version}>1.10.2</Text></Text>
+          <TouchableOpacity style={styles.button}>
+            <Text style={styles.buttonText}>Phiên Bản App{"\n"}<Text style = {styles.version}>1.10.2</Text></Text>
           </TouchableOpacity>
         </View>
 
-        {/* <View style={styles.action}>
-          <TouchableOpacity>
-            <Text style={styles.userText}>QUÊN MẬT KHẨU</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity>
-            <Text style={styles.userText}>THOÁT TÀI KHOẢN</Text>
-          </TouchableOpacity>
-        </View> */}
       </View>
     </SafeAreaView>
   );
@@ -125,56 +60,23 @@ const TEXT = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#CAFCFC",
+    backgroundColor: "#fff",
     paddingTop: Constants.statusBarHeight,
   },
   content: {
     paddingHorizontal: 30,
   },
-  // textWrapper: {
-  //   marginTop: 60,
-  //   marginBottom: 30,
-  // },
-  textPass: {
+  textSupport: {
     ...TEXT,
     fontSize: 20,
     lineHeight: 50,
     fontWeight: "bold",
     color:"black",
   },
-  // userText: {
-  //   ...TEXT,
-  //   fontSize: 16,
-  //   lineHeight: 30,
-  // },
   form: {
-    marginTop:30,
+    marginTop:20,
     marginBottom: 30,
   },
-  // iconLock: {
-  //   color: "#929292",
-  //   position: "absolute",
-  //   fontSize: 16,
-  //   top: 22,
-  //   left: 22,
-  //   zIndex: 10,
-  // },
-  // iconLock2: {
-  //   color: "#929292",
-  //   position: "absolute",
-  //   fontSize: 16,
-  //   top: 22,
-  //   left: 22,
-  //   zIndex: 10,
-  // },
-  // iconLock3: {
-  //   color: "#929292",
-  //   position: "absolute",
-  //   fontSize: 16,
-  //   top: 42,
-  //   left: 22,
-  //   zIndex: 10,
-  // },
   inputPassword: {
     marginBottom:10,
     height: 60,
@@ -185,26 +87,19 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     textAlign: "center",
     textAlignVertical: "center",
-    // borderStyle: 2 ,"solid" 
   },
-  buttonLogin: {
+  button: {
     height: 50,
-    // width:100,
-    // alignItems:"center",
-    borderRadius: 15,
+    borderRadius: 10,
     backgroundColor: "#fff",
     justifyContent: "center",
     marginTop: 30,
+    borderStyle: "solid",
+    borderWidth: 0.2,
+    // borderColor: "green",
   },
-  buttonLoginText: {
+  buttonText: {
     color:"black",
     marginLeft:30
   },
-  version:{
-    
-  }
-  // action: {
-  //   flexDirection: "row",
-  //   justifyContent: "space-between",
-  // },
 });
